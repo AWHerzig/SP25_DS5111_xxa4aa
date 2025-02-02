@@ -38,3 +38,56 @@ Navigate to where the repository has been cloned
 ```bash
 ./init.sh
 ```
+
+# Project specific setup
+
+## 1. Install Chrome Headless Browser
+
+```bash
+./install_chrome_headless.sh
+```
+
+This will also test the installation with example.com
+
+## 2. requirements.txt
+
+This file lays out which packages are needed. Right now, it is only `pandas` and `lxml` \
+
+## 3. Starting virtual enviornment
+
+```bash
+make update
+```
+
+Starts the enviornment and updates the packages in requirements.txt
+
+## 4. Run a job in makefile to test browser
+
+By doing this, we can make sure the headless browser is functioning.
+
+```bash
+make ygainers.csv
+```
+
+## 5. Repository Tree
+```
+.
+├── README.md
+├── google-chrome-stable_current_amd64.deb
+├── init.sh
+├── install_chrome_headless.sh
+├── makefile
+├── requirements.txt
+└── ygainers.html
+```
+
+
+
+
+
+
+
+
+
+
+
