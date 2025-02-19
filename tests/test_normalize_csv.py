@@ -5,8 +5,9 @@ Test the normalize_csv python script
 
 import sys
 import pandas as pd
-import bin.normalize_csv
+#import bin.normalize_csv
 sys.path.append('.')
+import bin.normalize_csv
 
 def test_read_wjsgainers_correct_names():
     """
