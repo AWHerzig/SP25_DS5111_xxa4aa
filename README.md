@@ -1,6 +1,8 @@
 # SP25_DS5111_xxa4aa
 Aidan Herzig Repository for Software and Automation Skills
 
+[![Feature Validation](https://github.com/AWHerzig/SP25_DS5111_xxa4aa/actions/workflows/validations.yml/badge.svg?branch=LAB-03_csv_normalizer)](https://github.com/AWHerzig/SP25_DS5111_xxa4aa/actions/workflows/validations.yml)
+
 
 # Instructions to setup the VM
 
