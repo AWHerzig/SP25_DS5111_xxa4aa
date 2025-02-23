@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m venv env
-          . env/bin/activate
+          source env/bin/activate
           pip install --upgrade pip; pip install -r requirements.txt
       - name: Activate enviornment
         run: |
-          . env/bin/activate
+          source env/bin/activate
       - name: Test with pytest
         run: |
           make test
