@@ -1,9 +1,5 @@
 import subprocess
 from abc import ABC, abstractmethod
-import pandas as pd
-import os
-from datetime import datetime
-
 # DOWNLOADER
 class GainerDownload(ABC):
     def __init__(self):

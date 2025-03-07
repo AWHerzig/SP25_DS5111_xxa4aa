@@ -1,5 +1,10 @@
-import bin/base as Base
-class GainerDownloadYahoo(GainerDownload):
+import bin.gainers.base as Base
+import os
+from datetime import datetime
+import subprocess
+import pandas as pd
+
+class GainerDownloadYahoo(Base.GainerDownload):
     def __init__(self):
         pass
         
@@ -14,7 +19,7 @@ class GainerDownloadYahoo(GainerDownload):
         os.remove('ygainers.html')
         os.remove('ygainers.csv')
 
-class GainerProcessYahoo(GainerProcess):
+class GainerProcessYahoo(Base.GainerProcess):
     def __init__(self):
         pass
 

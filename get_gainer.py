@@ -1,3 +1,5 @@
+import bin.gainers.factory as Factory
+
 # TEMPLATE
 class ProcessGainer:
     def __init__(self, gainer_downloader, gainer_normalizer):
@@ -26,7 +28,7 @@ if __name__=="__main__":
     choice = sys.argv[1]
 
     # let our factory get select the family of objects for processing
-    factory = GainerFactory(choice)
+    factory = Factory.GainerFactory(choice)
     downloader = factory.get_downloader()
     normalizer = factory.get_processor()
 

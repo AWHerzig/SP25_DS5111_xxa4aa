@@ -1,4 +1,9 @@
-class GainerDownloadWSJ(GainerDownload):
+import bin.gainers.base as Base
+import os
+from datetime import datetime
+import subprocess
+import pandas as pd
+class GainerDownloadWSJ(Base.GainerDownload):
     def __init__(self):
         pass
 
@@ -9,7 +14,7 @@ class GainerDownloadWSJ(GainerDownload):
         os.remove('wjsgainers.csv')
         print("Downloading WSJ gainers")
         
-class GainerProcessWSJ(GainerProcess):
+class GainerProcessWSJ(Base.GainerProcess):
     def __init__(self):
         pass
 
