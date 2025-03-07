@@ -32,5 +32,5 @@ class GainerFactory:
         """
         if self.choice == 'yahoo':
             return yahoo.GainerProcessYahoo()
-        else':
+        else:
             return wsj.GainerProcessWSJ()
