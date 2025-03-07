@@ -1,5 +1,8 @@
+import subprocess
 from abc import ABC, abstractmethod
-
+import pandas as pd
+import os
+from datetime import datetime
 # FACTORY
 class GainerFactory:
     def __init__(self, choice):
@@ -24,6 +27,7 @@ class GainerFactory:
 class GainerDownload(ABC):
     def __init__(self):
         self.url = url
+        self.raw = None
 
     @abstractmethod
     def download(self):
@@ -35,7 +39,14 @@ class GainerDownloadYahoo(GainerDownload):
         
 
     def download(self):
-        print("Downloading yahoo gainers")
+        #sudo google-chrome-stable --headless --disable-gpu --dump-dom --no-sandbox --timeout=5000 'https://finance.yahoo.com/markets/stocks/gainers/?start=0&count=200'
+        #subprocess.run([".", "env/bin/activate"], check=True, text = True)
+        #result = subprocess.run(["sudo", "google-chrome-stable", "--headless", "--disable-gpu", "--dump-dom", "--no-sandbox", "--timeout=5000", "'https://finance.yahoo.com/markets/stocks/gainers/?start=0&count=200'"], check=True, text=True, capture_output=True)
+        #print(result)
+        result = subprocess.run(["make", "ygainers.csv"])
+        self.raw = pd.read_csv('ygainers.csv')
+        os.remove('ygainers.html')
+        os.remove('ygainers.csv')
 
 class GainerDownloadWSJ(GainerDownload):
     def __init__(self):
@@ -50,10 +61,10 @@ class GainerDownloadWSJ(GainerDownload):
 # PROCESSORS 
 class GainerProcess(ABC):
     def __init__(self):
-        pass
+        self.normalized = None
 
     @abstractmethod
-    def normalize(self):
+    def normalize(self, raw_df):
         pass
 
     @abstractmethod
@@ -64,17 +75,29 @@ class GainerProcessYahoo(GainerProcess):
     def __init__(self):
         pass
 
-    def normalize(self):
+    def normalize(self, raw_df):
+        norm_df = raw_df[["Symbol", "Price", "Change", "Change %"]].\
+            rename(columns = {"Symbol": "symbol", "Price": "price", \
+				"Change": "price_change", "Change %": "price_percent_change"})
+        norm_df["price"] = norm_df.price.apply(lambda element: element.split(' ')[0])
+        norm_df["price_percent_change"] = norm_df.price_percent_change.\
+					str.replace('[+%]', '', regex=True)
+        self.normalized = norm_df
+
         print("Normalizing yahoo gainers")
 
     def save_with_timestamp(self):
+        path = "ygainers_" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".csv"
+        self.normalized.to_csv(path)
         print("Saving Yahoo gainers")
 # ITS OWN SEPARATE FILE
 class GainerProcessWSJ(GainerProcess):
     def __init__(self):
         pass
 
-    def normalize(self):
+    def normalize(self, raw_df):
+        
+
         print("Normalizing WSJ gainers")
 
     def save_with_timestamp(self):
@@ -90,7 +113,7 @@ class ProcessGainer:
         self.downloader.download()
 
     def _normalize(self):
-        self.normalizer.normalize()
+        self.normalizer.normalize(self.downloader.raw)
 
     def _save_to_file(self):
         self.normalizer.save_with_timestamp()
@@ -115,7 +138,7 @@ if __name__=="__main__":
     # create our process
     runner = ProcessGainer(downloader, normalizer)
     runner.process()
-
+    print(runner.normalizer.normalized.shape)
 
 
 
