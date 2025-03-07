@@ -16,3 +16,5 @@ lint:
 	. env/bin/activate; pylint bin/normalize_csv.py
 test: lint
 	. env/bin/activate; pytest -vvx tests
+gainers:
+	. env/bin/activate; python3 get_gainer.py $(SRC)
