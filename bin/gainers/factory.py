@@ -21,8 +21,7 @@ class GainerFactory:
         """
         if self.choice == 'yahoo':
             return yahoo.GainerDownloadYahoo()
-        else:
-            return wsj.GainerDownloadWSJ()
+        return wsj.GainerDownloadWSJ()
 
     def get_processor(self):
         """
@@ -32,5 +31,4 @@ class GainerFactory:
         """
         if self.choice == 'yahoo':
             return yahoo.GainerProcessYahoo()
-        else:
-            return wsj.GainerProcessWSJ()
+        return wsj.GainerProcessWSJ()

@@ -20,12 +20,14 @@ class GainerDownloadYahoo(Base.GainerDownload):
         """
         This method downloads the ygainer info and loads it into the python enviornment
         
-        Currently runs the makefile because it activates the venv and 
+        Currently runs the makefile because it activates the venv and
         I don't know how to in python but I'm hoping to figure that out still
         """
-        #sudo google-chrome-stable --headless --disable-gpu --dump-dom --no-sandbox --timeout=5000 'https://finance.yahoo.com/markets/stocks/gainers/?start=0&count=200'
         #subprocess.run([".", "env/bin/activate"], check=True, text = True)
-        #result = subprocess.run(["sudo", "google-chrome-stable", "--headless", "--disable-gpu", "--dump-dom", "--no-sandbox", "--timeout=5000", "'https://finance.yahoo.com/markets/stocks/gainers/?start=0&count=200'"], check=True, text=True, capture_output=True)
+        #result = subprocess.run(["sudo", "google-chrome-stable", "--headless", "--disable-gpu",
+        #"--dump-dom", "--no-sandbox", "--timeout=5000",
+        #"'https://finance.yahoo.com/markets/stocks/gainers/?start=0&count=200'"],
+        # check=True, text=True, capture_output=True)
         #print(result)
         subprocess.run(["make", "ygainers.csv"], check=True)
         self.raw = pd.read_csv('ygainers.csv')
@@ -42,7 +44,7 @@ class GainerProcessYahoo(Base.GainerProcess):
 
     def normalize(self, raw_df):
         """
-        This method normalizes the ygainer info 
+        This method normalizes the ygainer info
         """
         norm_df = raw_df[["Symbol", "Price", "Change", "Change %"]].\
             rename(columns = {"Symbol": "symbol", "Price": "price", \

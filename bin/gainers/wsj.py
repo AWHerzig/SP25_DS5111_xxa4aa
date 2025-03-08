@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 import subprocess
 import pandas as pd
-import bin.gainers.base as Bas
+import bin.gainers.base as Base
 class GainerDownloadWSJ(Base.GainerDownload):
     """
     This Class contains the downloading method for getting wsj gainers
@@ -17,15 +17,15 @@ class GainerDownloadWSJ(Base.GainerDownload):
         """
         This method downloads the wsjgainer info and loads it into the python enviornment
         
-        Currently runs the makefile because it activates the venv and 
+        Currently runs the makefile because it activates the venv and
         I don't know how to in python but I'm hoping to figure that out still
         """
-        result = subprocess.run(["make", "wjsgainers.csv"])
+        subprocess.run(["make", "wjsgainers.csv"], check = True)
         self.raw = pd.read_csv('wjsgainers.csv')
         os.remove('wjsgainers.html')
         os.remove('wjsgainers.csv')
         print("Downloading WSJ gainers")
-        
+
 class GainerProcessWSJ(Base.GainerProcess):
     """
     This Class contains the processing methods for getting wsj gainers
@@ -36,7 +36,7 @@ class GainerProcessWSJ(Base.GainerProcess):
 
     def normalize(self, raw_df):
         """
-        This method normalizes the wsjgainer info 
+        This method normalizes the wsjgainer info
         """
         norm_df = raw_df[["Unnamed: 0", "Last", "Chg", "% Chg"]].\
             rename(columns = {"Unnamed: 0": "symbol", "Last": "price", \

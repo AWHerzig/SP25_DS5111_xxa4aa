@@ -15,7 +15,6 @@ class GainerDownload(ABC):
         """
         The download method will be specified in the specific classes.
         """
-        pass
 
 
 class GainerProcess(ABC):
@@ -30,11 +29,9 @@ class GainerProcess(ABC):
         """
         The normalize method will be specified in the specific classes.
         """
-        pass
 
     @abstractmethod
     def save_with_timestamp(self):
         """
         The saving method will be specified in the specific classes.
         """
-        pass
