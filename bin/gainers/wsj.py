@@ -20,7 +20,13 @@ class GainerDownloadWSJ(Base.GainerDownload):
         Currently runs the makefile because it activates the venv and
         I don't know how to in python but I'm hoping to figure that out still
         """
-        subprocess.run(["make", "wjsgainers.csv"], check = True)
+        collected = False
+        while not collected:
+                try:
+                        subprocess.run(["make", "wjsgainers.csv"], check = True)
+                        collected = True
+                except (ValueError, CalledProcessError) as e:
+                        os.path.remove('wjsgainers.html')
         self.raw = pd.read_csv('wjsgainers.csv')
         os.remove('wjsgainers.html')
         os.remove('wjsgainers.csv')

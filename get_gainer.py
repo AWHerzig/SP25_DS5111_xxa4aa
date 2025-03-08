@@ -1,7 +1,15 @@
+"""
+This module contains the template and main script for the new gainers factory archtecture
+"""
+
+
 import bin.gainers.factory as Factory
 
 # TEMPLATE
 class ProcessGainer:
+    """
+    The teplate class which holds the appropriate methods depending on the gainer type
+    """
     def __init__(self, gainer_downloader, gainer_normalizer):
         self.downloader = gainer_downloader
         self.normalizer = gainer_normalizer
@@ -16,6 +24,9 @@ class ProcessGainer:
         self.normalizer.save_with_timestamp()
 
     def process(self):
+        """
+        public method called to fully process the gainer in one command
+        """
         self._download()
         self._normalize()
         self._save_to_file()
@@ -23,7 +34,7 @@ class ProcessGainer:
 if __name__=="__main__":
     # Our sample main file would look like this
     import sys
-   
+
     # Make our selection, 'one' choice
     choice = sys.argv[1]
 
