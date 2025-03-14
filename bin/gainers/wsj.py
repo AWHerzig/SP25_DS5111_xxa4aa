@@ -23,10 +23,11 @@ class GainerDownloadWSJ(Base.GainerDownload):
         collected = False
         while not collected:
                 try:
+                        #os.remove('wjsgainers.html')
                         subprocess.run(["make", "wjsgainers.csv"], check = True)
                         collected = True
-                except (ValueError, CalledProcessError) as e:
-                        os.path.remove('wjsgainers.html')
+                except (ValueError, subprocess.CalledProcessError) as e:
+                        os.remove('wjsgainers.html')
         self.raw = pd.read_csv('wjsgainers.csv')
         os.remove('wjsgainers.html')
         os.remove('wjsgainers.csv')
