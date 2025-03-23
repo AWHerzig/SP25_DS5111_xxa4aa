@@ -89,6 +89,7 @@ This is a current snapshot of the repository tree (18 Mar 2025)
 
 ```
 .
+├── ERD.md
 ├── README.md
 ├── __pycache__
 │   └── get_gainer.cpython-312.pyc
@@ -106,6 +107,7 @@ This is a current snapshot of the repository tree (18 Mar 2025)
 │   │   ├── wsj.py
 │   │   └── yahoo.py
 │   └── normalize_csv.py
+├── crontab_summary.md
 ├── get_gainer.py
 ├── google-chrome-stable_current_amd64.deb
 ├── init.sh
@@ -132,6 +134,15 @@ This is a current snapshot of the repository tree (18 Mar 2025)
 │   ├── wjsgainers_2025-03-18_09-31-38.csv
 │   ├── wjsgainers_2025-03-18_12-30-34.csv
 │   ├── wjsgainers_2025-03-18_16-01-33.csv
+│   ├── wjsgainers_2025-03-19_09-31-35.csv
+│   ├── wjsgainers_2025-03-19_12-30-21.csv
+│   ├── wjsgainers_2025-03-19_16-01-19.csv
+│   ├── wjsgainers_2025-03-20_09-31-19.csv
+│   ├── wjsgainers_2025-03-20_12-30-10.csv
+│   ├── wjsgainers_2025-03-20_16-01-19.csv
+│   ├── wjsgainers_2025-03-21_09-31-11.csv
+│   ├── wjsgainers_2025-03-21_12-30-11.csv
+│   ├── wjsgainers_2025-03-21_16-01-20.csv
 │   ├── ygainers_2025-03-07_15-10-51.csv
 │   ├── ygainers_2025-03-07_15-50-13.csv
 │   ├── ygainers_2025-03-07_16-01-44.csv
@@ -155,7 +166,8 @@ This is a current snapshot of the repository tree (18 Mar 2025)
 │   ├── ygainers_2025-03-17_12-30-23.csv
 │   ├── ygainers_2025-03-18_09-31-28.csv
 │   ├── ygainers_2025-03-18_12-30-26.csv
-│   └── ygainers_2025-03-18_16-01-23.csv
+│   ├── ygainers_2025-03-18_16-01-23.csv
+│   └── ygainers_2025-03-19_09-31-26.csv
 ├── scripts
 │   └── install_chrome_headless.sh
 └── tests
@@ -168,7 +180,7 @@ This is a current snapshot of the repository tree (18 Mar 2025)
     ├── test_generic.py
     └── test_normalize_csv.py
 
-11 directories, 68 files
+11 directories, 80 files
 ```
 
 
