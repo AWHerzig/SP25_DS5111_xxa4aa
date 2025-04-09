@@ -15,4 +15,5 @@ def test_python_version():
 	"""
 	tests if current python version is acceptable
 	"""
-	assert "3.10" in sys.version or "3.11" in sys.version or "3.12" in sys.version
+	assert "3.10" in sys.version or "3.11" in sys.version or \
+		"3.12" in sys.version or "3.13" in sys.version
