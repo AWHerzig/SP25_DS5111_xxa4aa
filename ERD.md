@@ -1,42 +1,43 @@
 ```mermaid
 erDiagram
-    Yahoo_Gainers }|--|| All_Gainers : combine
-    WSJ_Gainers }|--|| All_Gainers : combine
-    All_Gainers ||--|| Unique_Gainers : unique
-    Unique_Gainers {
+    Yahoo_Gainers }|--|| FULL_TABLE : combine
+    WSJ_Gainers }|--|| FULL_TABLE : combine
+    FULL_TABLE {
       string Symbol
+      string Source
       datetime date
-      float high
-      float low
-      float open
+      float price
+      float price_change
+      float price_percent_change
       float close
     }
-    Unique_Gainers ||--|| Gainers_With_New_Columns : Mutations
-    Gainers_With_New_Columns {
+    FULL_TABLE ||--|| ONE_PER_DATE_SYMBOL : cleaning
+    ONE_PER_DATE_SYMBOL {
       string Symbol
-      string Day_Of_Week
-      float Price_Change
-      float Price_Magnitude
+      datetime date
+      int day
+      float pctchange
     }
-    Gainers_With_New_Columns ||--|| Volatile_Stocks_InterDay : Price_Change_Standard_Deviation_By_Symbol
-    Volatile_Stocks_InterDay {
+    ONE_PER_DATE_SYMBOL ||--|| TOP_25_FREQUENCY : count-limit
+    TOP_25_FREQUENCY {
       string Symbol
-      float InterDayVolatility
+      int NumberOfDatesOnGainers
     }
-    Gainers_With_New_Columns ||--|| Volatile_Stocks_IntraDay : Price_Magnitude_Standard_Deviation_By_Symbol
-    Volatile_Stocks_IntraDay {
+    ONE_PER_DATE_SYMBOL ||--|| STDDEV_OF_FREQUENT_GAINERS : count-limit-standard_deviation
+    STDDEV_OF_FREQUENT_GAINERS {
       string Symbol
-      float IntraDayVolatility
+      int NumberOfDatesOnGainers
+      float standarddev
     }
-    Gainers_With_New_Columns ||--|| Volume_By_Day : Volume_Mean_By_DayOfWeek
-    Volume_By_Day {
-      string Day_Of_Week
-      float Mean_Volume
+    ONE_PER_DATE_SYMBOL ||--|| GAIN_BY_DAYOFWEEK : summarize
+    GAIN_BY_DAYOFWEEK {
+      int day
+      float averagegain
     }
-    Gainers_With_New_Columns ||--|| PriceChange_By_Day : Price_Change_Mean_By_DayOfWeek
-    PriceChange_By_Day {
-      string Day_Of_Week
-      float Mean_PriceChange
+    ONE_PER_DATE_SYMBOL ||--|| STDDEV_BY_DAYOFWEEK : standard_deviation
+    STDDEV_BY_DAYOFWEEK {
+      int day
+      float standarddev
     }
 ```
 
